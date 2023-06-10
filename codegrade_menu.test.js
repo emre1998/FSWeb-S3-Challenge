@@ -84,9 +84,16 @@ describe('menu.html', () => {
         expect(menuTitle).toMatch(regex);
     });
 
+    
     it('5 adet menu-section class\'ı doğru başlıklarla tespit edildi', () => {
         const menuSections = Array.from(container.querySelectorAll('.menu-section'));
+        const expectedHeadings = ['İçecekler', 'Aperatifler', /* Add your expected headings here */];
+        
         expect(menuSections.length).toBe(5);
+        menuSections.forEach((section, index) => {
+          const heading = section.querySelector('h3.ust-baslik').textContent;
+          expect(heading).toBe(expectedHeadings[index]);
+        });
 
         for(let i = 0; i < menuSections.length; i++) {
             if(menuSections[i].innerHTML.includes('İçecekler')) {
